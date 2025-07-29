@@ -12,14 +12,18 @@ function RecommendationType({ onRecommendationTypeChange }) {
           value="SingleProduct"
           onChange={() => onRecommendationTypeChange('SingleProduct')}
           className="mr-2"
+          id="SingleProduct"
         />
-        <label htmlFor="SingleProduct" className="mr-4">Produto Único</label>
+        <label htmlFor="SingleProduct" className="mr-4">
+          Produto Único
+        </label>
         <Checkbox
           type="radio"
           name="recommendationType"
           value="MultipleProducts"
           onChange={() => onRecommendationTypeChange('MultipleProducts')}
           className="mr-2"
+          id="MultipleProducts"
         />
         <label htmlFor="MultipleProducts">Múltiplos Produtos</label>
       </div>
