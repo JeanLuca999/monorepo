@@ -4,11 +4,14 @@ import './index.css';
 import './tailwind.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { RecommendationsProvider } from './contexts/Recommendation';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RecommendationsProvider>
+      <App />
+    </RecommendationsProvider>
   </React.StrictMode>
 );
 
