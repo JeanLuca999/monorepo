@@ -5,7 +5,7 @@ import RecommendationList from './components/RecommendationList/RecommendationLi
 function App() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
-      <h1 className="text-3xl font-bold mb-8">
+      <h1 className="text-3xl text-center p-3 font-bold mb-8">
         Recomendador de Produtos RD Station
       </h1>
       <div className="bg-white p-8 rounded-lg shadow-md w-full md:w-3/4 lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -21,10 +21,10 @@ function App() {
             às suas necessidades.
           </p>
         </div>
-        <div>
+        <div className="row-start-2 row-end-3 md:row-span-1 md:col-start-1 md:col-end-2">
           <Form />
         </div>
-        <div>
+        <div className="row-start-3 row-end-3 md:row-span-1 md:col-start-2 md:col-end-3">
           <RecommendationList />
         </div>
       </div>
