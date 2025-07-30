@@ -50,6 +50,8 @@ const getRecommendations = (
       selectedRecommendationType
     );
   }
+
+  return [];
 };
 
 export default { getRecommendations };
@@ -67,6 +69,7 @@ function filterForPreferencesAndFeatures(
       ) && features.some((feature) => selectedFeatures.includes(feature))
     );
   });
+
   return filteredProducts;
 }
 
@@ -90,10 +93,14 @@ function filterForFeaturesOnly(products, selectedFeatures) {
 
 function selectedItemsBasedOnRecommendationType(products, recommendation) {
   if (recommendation === 'SingleProduct' && products.length > 1) {
-    return [products[products.length - 1]];
+    const lastProduct = products[products.length - 1];
+    return [lastProduct];
   }
-  if (recommendation === 'SingleProduct') {
+  if (recommendation === 'SingleProduct' && products.length) {
     return [products[0]];
   }
-  return products;
+  if (recommendation === 'MultipleProducts' && products.length) {
+    return products;
+  }
+  return [];
 }
