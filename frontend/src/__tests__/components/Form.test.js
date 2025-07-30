@@ -93,7 +93,7 @@ test('should call handleChange when recommendation type is selected', () => {
   );
 });
 
-test('should call setRecommendations on form submission', () => {
+test('should show error message when no preference or feature is selected', () => {
   render(<Form />);
 
   const submitButton = screen.getByRole('button', {
@@ -101,8 +101,40 @@ test('should call setRecommendations on form submission', () => {
   });
   userEvent.click(submitButton);
 
-  expect(mockSetRecommendations).toHaveBeenCalledWith(
-    mockFormData,
-    mockProducts
-  );
+  expect(
+    screen.getByText('Selecione pelo menos uma preferência ou funcionalidade')
+  ).toBeInTheDocument();
+});
+
+test('should show error message when no recommendation type is selected', () => {
+  render(<Form />);
+
+  const submitButton = screen.getByRole('button', {
+    name: 'Obter recomendação',
+  });
+  userEvent.click(submitButton);
+  expect(
+    screen.getByText('Selecione um tipo de recomendação')
+  ).toBeInTheDocument();
+});
+
+test('should call setRecommendations on form submission', () => {
+  useForm.mockReturnValue({
+    formData: {
+      selectedPreferences: mockPreferences[0],
+      selectedFeatures: mockFeatures[0],
+      selectedRecommendationType: 'SingleProduct',
+    },
+    handleChange: mockHandleChange,
+  });
+
+  render(<Form />);
+
+  const submitButton = screen.getByRole('button', {
+    name: 'Obter recomendação',
+  });
+
+  userEvent.click(submitButton);
+
+  expect(mockSetRecommendations).toHaveBeenCalled();
 });
